@@ -3,7 +3,7 @@ const imgur = require('imgur');
 
 /**
  * @param {string} imgurID Who you're saying hello to
- * @returns {any}
+ * @returns {object}
  */
 
 module.exports = (imgurID = 'mbgq7nd', context, callback) => {
@@ -27,6 +27,8 @@ module.exports = (imgurID = 'mbgq7nd', context, callback) => {
     }
   }).catch((err) => {
     console.error(err);
-    return callback(null, err.status);
+    return callback(null, {
+      "Status": err.status
+    });
   });
 };
