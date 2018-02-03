@@ -6,7 +6,14 @@ const imgur = require('imgur');
  * @returns {object}
  */
 
-module.exports = (imgurID = 'mbgq7nd', context, callback) => {
+module.exports = (imgurID = '', context, callback) => {
+
+  if(!imgurID){
+    return callback(null, {
+      "Status": 404,
+      "Message": "No ID Given"
+    })
+  };
 
   imgur.setClientId('8d514771c5c4418');
   imgur.getClientId();
