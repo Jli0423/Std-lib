@@ -19,9 +19,11 @@ module.exports = (imgurID = 'mbgq7nd', context, callback) => {
 
   imgur.loadClientId().then(imgur.setClientId);
   imgur.getInfo(imgurID).then((json) => {
-    console.log(json.status);
     if (json.status == 200) {
-      return callback(null, json.data.link);
+      return callback(null, {
+        "Status": json.status,
+        "Link": json.data.link
+      });
     }
   }).catch((err) => {
     console.error(err);
