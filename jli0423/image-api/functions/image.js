@@ -14,6 +14,12 @@ module.exports = (imgurID = '', context, callback) => {
     "NANI": 0.00
   };
 
+  var total = 0;
+
+  for(item in testObject) {
+    total += testObject[item];
+  }
+
   // Invalid ID check
   if (!imgurID) {
     return callback(null, {
@@ -39,6 +45,7 @@ module.exports = (imgurID = '', context, callback) => {
       return callback(null, {
         "pic_url": json.data.link,
         "items": testObject,
+        "total": total,
         "err_code": json.status
       });
     }

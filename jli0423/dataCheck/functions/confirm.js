@@ -2,10 +2,18 @@ const lib = require('lib');
 const mongoose = require('mongoose');
 
 /**
-* A basic Hello World function
   @param {object} data
 * @returns {any}
 */
+
+var receiptSchema = mongoose.Schema({
+  type: String,
+  amount: Number,
+  items:[]
+});
+
+var test = mongoose.model('test', receiptSchema);
+
 module.exports = async (data = '', context) => {
 
   // if(!data) {
@@ -14,13 +22,6 @@ module.exports = async (data = '', context) => {
   //   }
   // };
 
-  var receiptSchema = mongoose.Schema({
-    type: String,
-    amount: Number,
-    items:[]
-  });
-
-  var test = mongoose.model('test', receiptSchema);
   var receipt = new test({
     type: "Superstore",
     amount: 49.42,
