@@ -5,6 +5,7 @@
   "author": "jli0423 <justin.li0423@gmail.com>",
   "main": "functions/__main__.js",
   "dependencies": {
+    "lib": "^3.0.1",
     "mongoose": "^5.0.3"
   },
   "private": true,
