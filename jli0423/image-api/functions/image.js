@@ -1,20 +1,30 @@
 const lib = require('lib');
+const imgur = require('imgur');
 
 /**
-* @param {string} imgur Who you're saying hello to
-* @returns {object}
-*/
+ * @param {string} imgurID Who you're saying hello to
+ * @returns {any}
+ */
 
-/*Example call: https://jli0423.lib.id/image-api@dev/image/?imgur=%22asdf%22*/
-module.exports = (imgur, context, callback) => {
+module.exports = (imgurID = 'mbgq7nd', context, callback) => {
 
-  /*call Azuare API here
-    get json back ->return json object*/
+  imgur.setClientId('8d514771c5c4418');
+  imgur.getClientId();
+  imgur.saveClientId().then(() => {
+    console.log('saved');
+  }).catch((err) => {
+    console.log(err.msg);
+  });
 
-  var test = {
-    "Test": 334,
-    "Test2": 234
-  }
-  return callback(null, test);
 
+  imgur.loadClientId().then(imgur.setClientId);
+  imgur.getInfo(imgurID).then((json) => {
+    console.log(json.status);
+    if (json.status == 200) {
+      return callback(null, json.data.link);
+    }
+  }).catch((err) => {
+    console.error(err);
+    return callback(null, err.status);
+  });
 };
