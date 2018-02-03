@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 
 var receiptSchema = mongoose.Schema({
   type: String,
-  amount: Number,
+  total: Number,
   items:[]
 });
 
@@ -24,7 +24,7 @@ module.exports = async (data = '', context) => {
 
   var receipt = new test({
     type: "Superstore",
-    amount: 49.42,
+    total: 49.42,
     items: [{
       "Item 1": 38.34,
       "Item 2": 32.12,

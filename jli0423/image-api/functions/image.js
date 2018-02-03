@@ -46,6 +46,7 @@ module.exports = (imgurID = '', context, callback) => {
         "pic_url": json.data.link,
         "items": testObject,
         "total": total,
+        "type": "Temporary",
         "err_code": json.status
       });
     }
