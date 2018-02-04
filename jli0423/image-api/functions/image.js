@@ -7,18 +7,6 @@ const request = require('request');
  */
 
 module.exports = (imgurID = '', context, callback) => {
-  var testObject = {
-    "Item 1": 38.34,
-    "Item 2": 32.12,
-    "Item 3": 2.43,
-    "NANI": 0.00
-  };
-
-  var total = 0;
-
-  for (item in testObject) {
-    total += testObject[item];
-  }
 
   // Invalid ID check
   if (!imgurID) {
@@ -50,15 +38,25 @@ module.exports = (imgurID = '', context, callback) => {
           "id": imgurID
         }
       }, (err, res, body) => {
-        return callback(null, res);
+        if (err) {
+          return err;
+        }
+        var temp = [];
+        var items = {};
+        var total = 0;
+        temp = res.body.items;
+        for(var i = 0; i < temp.length; i++){
+          items[temp[i].item] = temp[i].price;
+        }
+        totat = temp.total;
+        return callback(null, {
+          "pic_url": json.data.link,
+          "items": items,
+          "total": total,
+          "type": "Temporary",
+          "err_code": json.status
+        });
       });
-      // return callback(null, {
-      //   "pic_url": json.data.link,
-      //   "items": testObject,
-      //   "total": total,
-      //   "type": "Temporary",
-      //   "err_code": json.status
-      // });
     }
   }).catch((err) => {
     return callback(null, err.status);
