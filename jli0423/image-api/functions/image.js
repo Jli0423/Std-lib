@@ -1,6 +1,5 @@
 const lib = require('lib');
 const imgur = require('imgur');
-
 /**
  * @param {string} imgurID Who you're saying hello to
  * @returns {any}
@@ -16,7 +15,7 @@ module.exports = (imgurID = '', context, callback) => {
 
   var total = 0;
 
-  for(item in testObject) {
+  for (item in testObject) {
     total += testObject[item];
   }
 
