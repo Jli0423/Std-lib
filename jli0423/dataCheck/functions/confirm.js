@@ -7,30 +7,21 @@ const mongoose = require('mongoose');
 */
 
 var receiptSchema = mongoose.Schema({
-  type: String,
-  total: Number,
   items:[]
 });
 
-var test = mongoose.model('test', receiptSchema);
+var data = mongoose.model('data', receiptSchema);
 
-module.exports = async (data = '', context) => {
+module.exports = async (items = '', context) => {
 
-  // if(!data) {
-  //   return {
-  //     "err_code": 404
-  //   }
-  // };
+  if(!items) {
+    return {
+      "err_code": 404
+    }
+  };
 
-  var receipt = new test({
-    type: "Superstore",
-    total: 49.42,
-    items: [{
-      "Item 1": 38.34,
-      "Item 2": 32.12,
-      "Item 3": 2.43,
-      "NANI": 0.00
-    }]
+  var receipt = new data({
+    items: items
   });
 
 

@@ -44,11 +44,11 @@ module.exports = (imgurID = '', context, callback) => {
         var temp = [];
         var items = {};
         var total = 0;
+        total = res.body.total;        
         temp = res.body.items;
         for(var i = 0; i < temp.length; i++){
           items[temp[i].item] = temp[i].price;
         }
-        totat = temp.total;
         return callback(null, {
           "pic_url": json.data.link,
           "items": items,
