@@ -34,6 +34,7 @@ module.exports = async (items = '', context) => {
     if(err) {
       return console.log(err);
     }
+    return res.body;
   });
   return "done!";
 
